@@ -1,0 +1,12 @@
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+# /dev/sda2
+UUID=efb172e3-ff7f-408f-9655-9e044f99804f	/         	ext4      	rw,relatime	0 1
+
+/dev/sdb5      /home/rajatv/STORAGE/New-Volume-1         ntfs defaults,umask=000,dmask=027,fmask=137,uid=1000,gid=1000 0 0
+/dev/sdb7      /home/rajatv/STORAGE/New-Volume-2         ntfs defaults,umask=000,dmask=027,fmask=137,uid=1000,gid=1000 0 0
+/dev/sdb8      /home/rajatv/STORAGE/Games                ntfs defaults,umask=000,dmask=027,fmask=137,uid=1000,gid=1000 0 0
+/dev/sdb9      /home/rajatv/STORAGE/New-Volume-3         ntfs defaults,umask=000,dmask=027,fmask=137,uid=1000,gid=1000 0 0
+/dev/sdb11      /home/rajatv/STORAGE/50                   ntfs defaults,umask=000,dmask=027,fmask=137,uid=1000,gid=1000 0 0
