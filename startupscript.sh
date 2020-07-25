@@ -4,6 +4,8 @@ echo "i logged"
 
 xmodmap ~/mysetup/.Xmodmap &
 /home/rajatv/scripts/compton.sh &
+feh --bg-scale /home/rajatv/Pictures/wallpaper/architectural-design-architecture-buildings-city-374811.jpg &
+deadd-notification-center &
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/root/.gem/ruby/2.7.0/bin:$PATH"

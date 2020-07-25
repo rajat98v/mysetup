@@ -8,6 +8,8 @@ set icons
 set period 1
 set hidden on
 
+set previewer ~/.config/lf/preview
+
 # Vars that depend on environmental variables
 $lf -remote "send $id set previewer ${XDG_CONFIG_HOME:-$HOME/.config}/lf/scope"
 
@@ -91,7 +93,7 @@ map gg top
 
 map y # deletes the copy command at y
 map yy copy
-map yd $echo $f | xclip -sel clip
+map yp $echo $f | xclip -sel clip
 map yn $basename $f | xclip -sel clip
 
 map d # deletes the d command to cut
