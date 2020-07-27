@@ -1,0 +1,3 @@
+[submodule "tools/compton-kawase-blur"]
+	path = tools/compton-kawase-blur
+	url = https://github.com/GabrielTenma/compton-kawase-blur.git
