@@ -2,10 +2,6 @@
 exec &> >(tee -a ~/.log.txt)
 echo "i logged"
 
-xmodmap ~/mysetup/.Xmodmap &
-/home/rajatv/scripts/compton.sh &
-feh --bg-scale /home/rajatv/Pictures/wallpaper/architectural-design-architecture-buildings-city-374811.jpg &
-deadd-notification-center &
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/root/.gem/ruby/2.7.0/bin:$PATH"
@@ -25,4 +21,14 @@ export PATH="$HOME/bin/caa:$PATH"
 
 export VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/intel_icd.x86_64.json:/usr/share/vulkan/icd.d/primus_vk_wrapper.json
 export LC_ALL=en_US.UTF-8
+
+xmodmap ~/mysetup/.Xmodmap &
+/home/rajatv/scripts/compton.sh &
+feh --bg-scale /home/rajatv/Pictures/wallpaper/architectural-design-architecture-buildings-city-374811.jpg &
+deadd-notification-center &
+trayer --edge top --align right --SetDockType true --SetPartialStrut true \
+ --expand true --width 3 --transparent true --tint 0x191860 --height 28 &
+blueman-applet &
+nm-applet &
+
 exec dwm
