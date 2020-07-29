@@ -1,5 +1,5 @@
 # Basic vars
-set shell bash
+set shell zsh
 set shellopts '-eu'
 set ifs "\n"
 set scrolloff 10
@@ -12,12 +12,15 @@ set hidden on
 map s quit
 map gh cd ~
 map gd cd ~/Downloads
+map gD cd ~/Desktop
 map gw cd ~/workspace
 map gn cd ~/workspace/Notes
 map ge cd ~/STORAGE
 map gm cd ~/STORAGE/New-Volume-1/music
+map gp cd ~/workspace/Projects
 
-map gc cd ~/workspace/Config/myworkspace
+map gc cd ~/mysetup
+map gC cd ~/.config
 map gs cd ~/Pictures
 map gp cd ~/workspace/Projects
 
@@ -31,7 +34,8 @@ map yp $echo $f | xclip -sel clip
 map yn $basename $f | xclip -sel clip
 
 map d # deletes the d command to cut
-map dd delete
+map dd cut
+map dD delete
 
 map D delete
 map C copyto

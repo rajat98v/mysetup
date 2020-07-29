@@ -18,6 +18,8 @@ export ANDROID_HOME=/opt/android-sdk
 
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/bin/caa:$PATH"
+export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.local/bin/statusbar
 
 export VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/intel_icd.x86_64.json:/usr/share/vulkan/icd.d/primus_vk_wrapper.json
 export LC_ALL=en_US.UTF-8
