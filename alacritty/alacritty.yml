@@ -107,6 +107,7 @@ font:
     # Default:
     #family: Source Code Pro
     family: FiraCode Nerd Font
+    #family: SauceCodePro Nerd Font
     # =>
     # 
     # The `style` can be specified to pick a specific face.

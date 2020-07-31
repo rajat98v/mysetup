@@ -112,7 +112,7 @@ static Key keys[] = {
 	/* { MODKEY|ShiftMask,		XK_Escape,	spawn,	SHCMD("") }, */
 	{ MODKEY,			XK_grave,	spawn,	SHCMD("dmenuunicode") },
 	/* { MODKEY|ShiftMask,		XK_grave,	togglescratch,	SHCMD("") }, */
-	TAGKEYS(			XK_1,		0)
+	TAGKEYS(			XK_1,		9)
 	TAGKEYS(			XK_2,		1)
 	TAGKEYS(			XK_3,		2)
 	TAGKEYS(			XK_4,		3)
@@ -121,8 +121,9 @@ static Key keys[] = {
 	TAGKEYS(			XK_7,		6)
 	TAGKEYS(			XK_8,		7)
 	TAGKEYS(			XK_9,		8)
-	{ MODKEY,			XK_0,		view,		{.ui = ~0 } },
-	{ MODKEY|ShiftMask,		XK_0,		tag,		{.ui = ~0 } },
+	TAGKEYS(			XK_0,		0)
+	{ MODKEY,			XK_1,		view,		{.ui = ~9 } },
+	{ MODKEY|ShiftMask,		XK_1,		tag,		{.ui = ~9 } },
 	{ MODKEY,			XK_minus,	spawn,		SHCMD("pamixer --allow-boost -d 5; kill -44 $(pidof dwmblocks)") },
 	{ MODKEY|ShiftMask,		XK_minus,	spawn,		SHCMD("pamixer --allow-boost -d 15; kill -44 $(pidof dwmblocks)") },
 	{ MODKEY,			XK_equal,	spawn,		SHCMD("pamixer --allow-boost -i 5; kill -44 $(pidof dwmblocks)") },

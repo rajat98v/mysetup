@@ -26,7 +26,8 @@ export LC_ALL=en_US.UTF-8
 
 xmodmap ~/mysetup/.Xmodmap &
 /home/rajatv/scripts/compton.sh &
-feh --bg-scale /home/rajatv/Pictures/wallpaper/architectural-design-architecture-buildings-city-374811.jpg &
+# feh --bg-scale /home/rajatv/Pictures/wallpaper/architectural-design-architecture-buildings-city-374811.jpg &
+feh --bg-scale /home/rajatv/Pictures/wallpaper/Beautiful-Galaxy-Wallpaper-1920x1200.jpg
 deadd-notification-center &
 trayer --edge top --align right --SetDockType true --SetPartialStrut true \
  --expand true --width 3 --transparent true --tint 0x191860 --height 28 &
