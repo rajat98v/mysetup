@@ -61,7 +61,8 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  startup_mode: Windowed
+  # startup_mode: Windowed
+  startup_mode: Maximized
 
   # Window title
   #title: Alacritty
@@ -105,9 +106,9 @@ font:
     # Font family
     #
     # Default:
-    #family: Source Code Pro
-    family: FiraCode Nerd Font
-    #family: SauceCodePro Nerd Font
+    # family: Source Code Pro
+    # family: FiraCode Nerd Font
+    family: SauceCodePro Nerd Font
     # =>
     # 
     # The `style` can be specified to pick a specific face.
@@ -136,7 +137,7 @@ font:
     #style: Italic
 
   # Point size
-  size: 10.0
+  size: 11.5
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -168,55 +169,89 @@ font:
   use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
-draw_bold_text_with_bright_colors: true
 
 
 # KDE Breeze (Ported from Konsole)
 colors:
   # Default colors
   primary:
-    # background: '0x232627'
-    # foreground: '0xfcfcfc'
-    background: '0x0A0E14'
-    foreground: '0xB3B1AD'
+    background: '0x181818'
+    foreground: '0xd8d8d8'
 
-    dim_foreground: '0xeff0f1'
-    bright_foreground: '0xffffff'
-    dim_background: '0x31363b'
-    bright_background: '0x000000'
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '0x181818'
+    cursor: '0xd8d8d8'
 
   # Normal colors
   normal:
-    black: '0x232627'
-    red: '0xed1515'
-    green: '0x11d116'
-    yellow: '0xf67400'
-    blue: '0x1d99f3'
-    magenta: '0x9b59b6'
-    cyan: '0x1abc9c'
-    white: '0xfcfcfc'
+    black:   '0x181818'
+    red:     '0xab4642'
+    green:   '0xa1b56c'
+    yellow:  '0xf7ca88'
+    blue:    '0x7cafc2'
+    magenta: '0xba8baf'
+    cyan:    '0x86c1b9'
+    white:   '0xd8d8d8'
 
   # Bright colors
   bright:
-    black: '0x7f8c8d'
-    red: '0xc0392b'
-    green: '0x1cdc9a'
-    yellow: '0xfdbc4b'
-    blue: '0x3daee9'
-    magenta: '0x8e44ad'
-    cyan: '0x16a085'
-    white: '0xffffff'
+    black:   '0x585858'
+    red:     '0xdc9656'
+    green:   '0x282828'
+    yellow:  '0x383838'
+    blue:    '0xb8b8b8'
+    magenta: '0xe8e8e8'
+    cyan:    '0xa16946'
+    white:   '0xf8f8f8'
 
-  # Dim colors
-  dim:
-    black: '0x31363b'
-    red: '0x783228'
-    green: '0x17a262'
-    yellow: '0xb65619'
-    blue: '0x1b668f'
-    magenta: '0x614a73'
-    cyan: '0x186c60'
-    white: '0x63686d'
+draw_bold_text_with_bright_colors: false
+
+# colors:
+#   # Default colors
+#   primary:
+#     # background: '0x232627'
+#     # foreground: '0xfcfcfc'
+#     background: '0x0A0E14'
+#     foreground: '0xB3B1AD'
+
+#     dim_foreground: '0xeff0f1'
+#     bright_foreground: '0xffffff'
+#     dim_background: '0x31363b'
+#     bright_background: '0x000000'
+
+#   # Normal colors
+#   normal:
+#     black: '0x232627'
+#     red: '0xed1515'
+#     green: '0x11d116'
+#     yellow: '0xf67400'
+#     blue: '0x1d99f3'
+#     magenta: '0x9b59b6'
+#     cyan: '0x1abc9c'
+#     white: '0xfcfcfc'
+
+#   # Bright colors
+#   bright:
+#     black: '0x7f8c8d'
+#     red: '0xc0392b'
+#     green: '0x1cdc9a'
+#     yellow: '0xfdbc4b'
+#     blue: '0x3daee9'
+#     magenta: '0x8e44ad'
+#     cyan: '0x16a085'
+#     white: '0xffffff'
+
+#   # Dim colors
+#   dim:
+#     black: '0x31363b'
+#     red: '0x783228'
+#     green: '0x17a262'
+#     yellow: '0xb65619'
+#     blue: '0x1b668f'
+#     magenta: '0x614a73'
+#     cyan: '0x186c60'
+#     white: '0x63686d'
 # Visual Bell
 #
 # Any time the BEL code is received, Alacritty "rings" the visual bell. Once
@@ -238,7 +273,7 @@ colors:
 #   - Linear
 #
 # Specifying a `duration` of `0` will disable the visual bell.
-visual_bell:
+bell:
   animation: EaseOutExpo
   duration: 1
   color: '0x333333'
@@ -247,7 +282,7 @@ visual_bell:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.80
+background_opacity: 1.0
 
 # Mouse bindings
 #
@@ -308,7 +343,7 @@ selection:
   save_to_clipboard: false
 
 # Allow terminal applications to change Alacritty's window title.
-dynamic_title: true
+window.dynamic_title: true
 
 cursor:
   # Cursor style

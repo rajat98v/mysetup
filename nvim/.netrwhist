@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =8
+let g:netrw_dirhist_8='/home/rajatv/STORAGE/D/Notes/nvidia'
+let g:netrw_dirhist_7='/home/rajatv/STORAGE/D/Notes'
+let g:netrw_dirhist_6='/home/rajatv/STORAGE/E/Notes/nvidia'
+let g:netrw_dirhist_5='/home/rajatv/STORAGE/50'
+let g:netrw_dirhist_4='/home/rajatv/Downloads/Vantage Point (2008)'
+let g:netrw_dirhist_3='/etc/X11/xorg.conf.d'
+let g:netrw_dirhist_2='/home/rajatv/STORAGE/New-Volume-2/workspace/Projects/github/Areadivide'
+let g:netrw_dirhist_1='/home/rajatv/Downloads'

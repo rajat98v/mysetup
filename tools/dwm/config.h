@@ -80,7 +80,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define MODKEY Mod4Mask
+#define MODKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -165,7 +165,8 @@ static Key keys[] = {
 	{ MODKEY,			XK_s,		togglesticky,	{0} },
 	{ MODKEY|ShiftMask,		XK_d,		spawn,		SHCMD("~/mysetup/scripts/main/rofiselect.sh") },
 	/* { MODKEY,			XK_d,		spawn,          {.v = dmenucmd } }, */
-	{ MODKEY,			XK_d,		spawn,		SHCMD("rofi -show run") },
+	{ MODKEY,			XK_d,		spawn,		SHCMD("albert toggle") },
+	{ MODKEY|ShiftMask,		XK_f,		spawn,		SHCMD("albert toggle") },
 	{ MODKEY,			XK_f,		togglefullscr,	{0} },
 	{ MODKEY|ShiftMask,		XK_f,		setlayout,	{.v = &layouts[8]} },
 	{ MODKEY,			XK_g,		shiftview,	{ .i = -1 } },
@@ -189,14 +190,8 @@ static Key keys[] = {
 	/* V is automatically bound above in STACKKEYS */
 	{ MODKEY,			XK_b,		togglebar,	{0} },
 	/* { MODKEY|ShiftMask,		XK_b,		spawn,		SHCMD("") }, */
-	{ MODKEY,			XK_n,		spawn,		SHCMD("alacritty -e nvim -c VimwikiIndex") },
-	{ MODKEY|ShiftMask,		XK_n,		spawn,		SHCMD("alacritty -e newsboat; pkill -RTMIN+6 dwmblocks") },
 	{ MODKEY,			XK_m,		spawn,		SHCMD("alacritty -e ncmpcpp") },
 	{ MODKEY|ShiftMask,		XK_m,		spawn,		SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)") },
-	{ MODKEY,			XK_comma,	spawn,		SHCMD("mpc prev") },
-	{ MODKEY|ShiftMask,		XK_comma,	spawn,		SHCMD("mpc seek 0%") },
-	{ MODKEY,			XK_period,	spawn,		SHCMD("mpc next") },
-	{ MODKEY|ShiftMask,		XK_period,	spawn,		SHCMD("mpc repeat") },
 
 	{ MODKEY,			XK_Left,	focusmon,	{.i = -1 } },
 	{ MODKEY|ShiftMask,		XK_Left,	tagmon,		{.i = -1 } },

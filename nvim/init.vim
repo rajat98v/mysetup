@@ -1,104 +1,95 @@
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-				\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-
-
-let g:prettier#exec_cmd_async = 1
-let g:prettier#quickfix_enabled = 0
-
-" autocmd InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-tnoremap <A-h> <C-\><C-n><C-w>h
-tnoremap <A-j> <C-\><C-n><C-w>j
-tnoremap <A-k> <C-\><C-n><C-w>k
-tnoremap <A-l> <C-\><C-n><C-w>l
-nnoremap <A-h> <C-w>h
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-l> <C-w>l
+set hidden
+set mouse=a
+" Some servers have issues with backup files, see #649
+" set nobackup
+" set nowritebackup
+" Better display for messages
+set cmdheight=2
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=100
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+" always show signcolumns
+set signcolumn=yes
 
 " open new split panes to right and below
 set splitright
 set splitbelow
+" so be do be so 
+
+"remembers the last position of cursor after closing file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+inoremap ;<cr> <end>;<cr>
+inoremap .<cr> <end>.
+inoremap ;;<cr> <down><end>;<cr>
+inoremap ..<cr> <down><end>.;
+
 " turn terminal to normal mode with escape
-tnoremap <Esc> <C-\><C-n>
+" tnoremap <Esc> <C-\><C-n>
+
+let g:bclose_no_plugin_maps = 1 " <leader>bd disable
+
+let g:prettier#exec_cmd_async = 1
+let g:prettier#quickfix_enabled = 0
+" autocmd InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+
+let g:airline_powerline_fonts=1
+
 " start terminal in insert mode
 au BufEnter * if &buftype == 'terminal' | :startinsert | endif
 " open terminal on ctrl+n
 function! OpenTerminal()
-  split term://bash
-  resize 10
+    split term://zsh
+    resize 10
 endfunction
 nnoremap <c-n> :call OpenTerminal()<CR>
 
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-let g:coc_snippet_next = '<S-TAB>'
-" let g:auto_save = 1
+let g:auto_save = 0
 hi Normal guibg=NONE ctermbg=NONE
 set clipboard=unnamed
-let &t_SI = "\<esc>[5 q"  " blinking I-beam in insert mode
-let &t_SR = "\<esc>[5 q"  " blinking underline in replace mode
-let &t_EI = "\<esc>[2 q"  " default cursor (usually blinking block) otherwise
 
-" let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indentLine_char = '┊'
 
-set tabstop=4       " The width of a TAB is set to 4.
-                    " Still it is a \t. It is just that
-                    " Vim will interpret it to be having
-                    " a width of 4.
-
-set shiftwidth=4    " Indents will have a width of 4
-
-set softtabstop=4   " Sets the number of columns for a TAB
-
-set expandtab       " Expand TABs to spaces
 
 let g:vim_markdown_conceal = 0
 let g:vebugger_leader='\'
 
 
- " Tab
+" Tab
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
-" nnoremap <C-h> <C-w>h<CR>
-" nnoremap <C-j> <C-w>j<CR>
-" nnoremap <C-k> <C-w>k<CR>
-" nnoremap <C-l> <C-w>l<CR>
+
+nnoremap <C-h> <C-w>h<CR>
+nnoremap <C-j> <C-w>j<CR>
+nnoremap <C-k> <C-w>k<CR>
+nnoremap <C-l> <C-w>l<CR>
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+map <leader>q :exit<CR>
+map <leader>h :Lf<CR>
+" map <leader>d :!g++ -Wall -lm -o main main.cpp && ./main < input > output1 && diff output1 output<cr>
+map <leader>d :!g++ -Wall -lm -o main main.cpp && ./main < input > output<cr>
 
 
-map <leader>h :Ranger<CR>
-map <leader>g :BuffergatorOpen<CR>
-" map <leader>y :Ranger<CR>
-" map <leader>g :Ranger<CR>
-" map <leader>e :Ranger<CR>
-" inoremap <leader>bb :BuffergatorOpen<cr>
-" nnoremap <leader>t :terminal<cr>
-" nnoremap <leader>ut :RangerNewTab<cr>
-" nnoremap <leader>uu :Ranger<cr>
-" nnoremap <leader>; :silent !i3 split h && $TERMINAL -e ranger & <cr>
-" nnoremap <leader>v :silent !i3 split v && $TERMINAL -e ranger & <cr>
-nnoremap <leader>w :silent !$TERMINAL -e ranger & <cr>
-
-
-
-
-" nnoremap <M-j> <C-f>
-" nnoremap <M-k> <C-b>
-
-" " Alt-j and Alt-k works for select in Intelisence
-" inoremap <expr> <M-j> ((pumvisible())?("\<C-n>"):("<M-j>")) 
-" inoremap <expr> <M-k> ((pumvisible())?("\<C-p>"):("<M-k>"))
 "Clicking Enter inside Intelisence Works
 inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>" 
 
 autocmd filetype rust map mm :w <bar> :!/home/rajatv/scripts/compile-current-project.sh <CR>
 
-map zz :w <CR>
 autocmd filetype cpp nnoremap <F4> :w <bar> !clear <CR> :!cmake . <CR>
 autocmd filetype cpp nnoremap <F5> :w <bar> !clear <CR> :!make && ./run <CR>
+autocmd filetype rust nnoremap <F5> :w <bar> !clear <CR> :!alacritty --hold -e cargo run <CR>
 
 autocmd filetype rust nnoremap <F4> :w <bar> !clear <CR> :!cargo build <CR>
 autocmd filetype rust nnoremap <F5> :w <bar> !clear <CR> :!alacritty --hold -e cargo run <CR>
@@ -110,39 +101,24 @@ autocmd filetype cpp nnoremap <F9> :w <bar> !clear && map <F9> :w <CR> :!g++ % -
 autocmd filetype cpp nnoremap <F12> :w <bar> !clear && map <F12> :w <CR> :!g++ % -o %< <CR>
 autocmd filetype rust nnoremap <F9> :w <bar> !clear && map <F9> :w <CR> :!rustc % && ./%<<CR>
 autocmd filetype cpp inoremap <F9> :w <bar> !clear && map <F9> :w <CR> :!g++ % -o %< && ./%< -O3 -m64<CR>
-autocmd FileType python nnoremap <buffer> <F8> :update<bar>!python %<CR>
-autocmd FileType python nnoremap <buffer> <F5> !konsole -e python main.py &<CR>
 autocmd filetype c nnoremap <F9> :w <bar> map <F9> :w <CR> :!gcc % -o %< && ./%< <CR>
 
 " F9/F10 compile/run default file.
 " F11/F12 compile/run alternate file.
 
-autocmd filetype java map <F9> :set makeprg=javac\ %<CR>:make<CR>
-autocmd filetype java map <F10> :!echo %\|awk -F. '{print $1}'\|xargs java<CR>
-autocmd filetype java map <F11> :set makeprg=javac\ #<CR>:make<CR>
-autocmd filetype java map <F12> :!echo #\|awk -F. '{print $1}'\|xargs java<CR>
-
-autocmd filetype java map! <F9> <Esc>:set makeprg=javac\ %<CR>:make<CR>
-autocmd filetype java map! <F10> <Esc>:!echo %\|awk -F. '{print $1}'\|xargs java<CR>
-autocmd filetype java map! <F11> <Esc>set makeprg=javac\ #<CR>:make<CR>
-autocmd filetype java map! <F12> <Esc>!echo #\|awk -F. '{print $1}'\|xargs java<CR>
 
 " Tip: load a file into the default buffer, and its driver
 " into the alternate buffer, then use F9/F12 to build/run.
 " Note: # (alternate filename) isn't set until you :next to it!
 " Tip2: You can make then run without hitting ENTER to continue. F9-F12
 
-" With these you can cl/cn/cp (quickfix commands) to browse the errors
-" after you compile it with :make
 
-set makeprg=javac\ %
-set errorformat=%A:%f:%l:\ %m,%-Z%p^,%-C%.%#
 
 " If two files are loaded, switch to the alternate file, then back.
 " That sets # (the alternate file).
 if argc() == 2
-  n
-  e #
+    n
+    e #
 endif
 
 " nmap <space> <bslash>
@@ -163,8 +139,6 @@ nnoremap <Leader>p :PrettierAsync <cr>
 nnoremap <Leader>x :q<cr>   " Quit current file
 
 " nnoremap <Leader>m :PrettierAsync<cr>:w<cr>
-nnoremap zx :wq!<cr>
-nnoremap zc :qa!<cr>
 
 set showmatch
 set cursorline
@@ -174,8 +148,8 @@ inoremap kj <Esc>
 filetype plugin on
 
 set so=8
-
-let g:buffergator_viewport_split_policy="B"
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+    
 
 
 set nocompatible
@@ -185,62 +159,40 @@ let g:vim_markdown_folding_disabled = 1
 let g:markdown_fenced_languages = ['c','cpp','html', 'python', 'bash=sh']
 
 
-let $ZFZ_DEFAULT_COMMAND = 'ag -g ""'
-nnoremap <C-b> :FZF<CR>
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-s': 'split',
-  \ 'ctrl-v': 'vsplit'
-  \}
 
 " set backspace=indent,eol,start
 call plug#begin('~/.vim/plugged')
+Plug 'chriskempson/base16-vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'wincent/command-t', {
+     \   'do': 'cd ruby/command-t/ext/command-t && ruby extconf.rb && make'
+     \ }
+Plug 'wincent/ferret'
+Plug 'wincent/scalpel'
 
 " post install (yarn install | npm install) then load plugin only for editing supported files
 Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install' }
-  " \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
-" Plug 'peitalin/vim-jsx-typescript'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" Plug 'https://github.com/lambdalisue/vim-django-support'
+            \ 'do': 'yarn install' }
 
-Plug 'https://github.com/ctrlpvim/ctrlp.vim'
-Plug 'https://github.com/jeetsukumaran/vim-buffergator'
-Plug 'https://github.com/Glench/Vim-Jinja2-Syntax'
-
-" Plug 'https://github.com/SirVer/ultisnips'
+" Plug 'ctrlpvim/ctrlp.vim' -> command t
+" Plug 'jeetsukumaran/vim-buffergator' -> command t
+Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'honza/vim-snippets'
-" Plug 'https://github.com/neoclide/coc-snippets'
-" Plug 'vim-scripts/Conque-GDB'
-" Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
 Plug 'tikhomirov/vim-glsl' "Opengl shading language highlighting
-Plug 'alvan/vim-closetag'
+" Plug 'alvan/vim-closetag'
 Plug 'pangloss/vim-javascript'
-" Plug 'wookiehangover/jshint.vim'
 Plug 'cespare/vim-toml'
-
-
-" Plug 'rust-lang/rust.vim'
-" Plug 'racer-rust/vim-racer'
-
-
-
+" Plug 'thezeroalpha/vim-lf'
+Plug 'ptzz/lf.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'scrooloose/nerdtree'
-Plug 'altercation/vim-colors-solarized'
-Plug 'jiangmiao/auto-pairs'
-Plug 'ayu-theme/ayu-vim'
-Plug 'dracula/vim'
-Plug 'NLKNguyen/papercolor-theme'
+" Plug 'jiangmiao/auto-pairs'
 " Plug 'thosakwe/vim-flutter'
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'rbgrouleff/bclose.vim'
+" Plug 'rbgrouleff/bclose.vim'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'vim-scripts/Highlight-UnMatched-Brackets'
 
@@ -252,58 +204,27 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'SidOfc/mkdx', { 'for': 'markdown' }
 " Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 
-Plug 'morhetz/gruvbox'
-Plug 'tomasiser/vim-code-dark'
 Plug 'easymotion/vim-easymotion'
 " Plug 'Yggdroot/indentLine'
-Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Yggdroot/indentLine'
+" Plug 'nathanaelkane/vim-indent-guides'
 Plug 'chrisbra/Colorizer'
 Plug 'vim-scripts/vim-auto-save'
 Plug 'arcticicestudio/nord-vim'
-Plug 'https://github.com/dunstontc/vim-vscode-theme'
 
 call plug#end()
 
-" filenames like *.xml, *.html, *.xhtml, ...
-" These are the file extensions where this plugin is enabled.
-"
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js'
-
-" filenames like *.xml, *.xhtml, ...
-" This will make the list of non-closing tags self-closing in the specified files.
-"
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.js'
-
-" filetypes like xml, html, xhtml, ...
-" These are the file types where this plugin is enabled.
-"
-let g:closetag_filetypes = 'html,xhtml,phtml,js'
-
-" filetypes like xml, xhtml, ...
-" This will make the list of non-closing tags self-closing in the specified files.
-"
-let g:closetag_xhtml_filetypes = 'xhtml,jsx, js'
-
-" integer value [0|1]
-" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
-"
-let g:closetag_emptyTags_caseSensitive = 1
-
-" dict
-" Disables auto-close if not in a "valid" region (based on filetype)
-"
-let g:closetag_regions = {
-    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
-    \ 'javascript.jsx': 'jsxRegion',
-    \ }
-
-" Shortcut for closing tags, default is '>'
-"
-let g:closetag_shortcut = '>'
-
-" Add > at current position without closing the current tag, default is ''
-"
-let g:closetag_close_shortcut = '<leader>>'
+" let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.vue'
+" let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.js,*.vue'
+" let g:closetag_filetypes = 'html,xhtml,phtml,js,vue'
+" let g:closetag_xhtml_filetypes = 'xhtml,jsx,js,vue'
+" let g:closetag_emptyTags_caseSensitive = 1
+" let g:closetag_regions = {
+"             \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+"             \ 'javascript.jsx': 'jsxRegion',
+"             \ }
+" let g:closetag_shortcut = '>'
+" let g:closetag_close_shortcut = '<leader>>'
 
 
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -314,9 +235,9 @@ syntax enable
 
 " colorscheme ayu
 " let ayucolor="mirage"
-colorscheme PaperColor
-set background=dark
-set ts=4 sw=4 et
+" colorscheme PaperColor
+" set background=dark
+colorscheme base16-default-dark
 
 set noswapfile
 set number
@@ -334,36 +255,26 @@ nnoremap <leader>fD :FlutterVisualDebug<cr>
 "====================================================================================================
 "Coc - Language Server Client ***Start***
 "====================================================================================================
- " if hidden is not set, TextEdit might fail.
-set hidden
+" if hidden is not set, TextEdit might fail.
 
-" Some servers have issues with backup files, see #649
-set nobackup
-set nowritebackup
 
-" Better display for messages
-set cmdheight=2
+" ##################### coc config #######################################
 
-" You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
-
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-
-" always show signcolumns
-set signcolumn=yes
+let g:coc_snippet_next = '<S-TAB>'
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+            \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Use <c-space> to trigger completion.
@@ -390,29 +301,23 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
 endfunction
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+    autocmd!
+    " Setup formatexpr specified filetype(s).
+    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+    " Update signature help on jump placeholder
+    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
@@ -422,7 +327,7 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 " Remap for do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
+" nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Create mappings for function text object, requires document symbols feature of languageserver.
 xmap if <Plug>(coc-funcobj-i)
@@ -449,8 +354,6 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Using CocList
 " Show all diagnostics
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 " Show commands
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
@@ -458,7 +361,7 @@ nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
 nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
@@ -467,3 +370,20 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 "Coc Language Server Client ***End *****
 "====================================================================================================
 " hi Normal guibg=NONE ctermbg=NONE
+" =+=+=+=+====================Setting=========================
+if has('folding')
+  if has('windows')
+    set fillchars=diff:∙               " BULLET OPERATOR (U+2219, UTF-8: E2 88 99)
+    set fillchars+=fold:·              " MIDDLE DOT (U+00B7, UTF-8: C2 B7)
+    set fillchars+=vert:┃              " BOX DRAWINGS HEAVY VERTICAL (U+2503, UTF-8: E2 94 83)
+  endif
+
+  if has('nvim-0.3.1')
+    set fillchars+=eob:\              " suppress ~ at EndOfBuffer
+  endif
+
+  set foldmethod=indent               " not as cool as syntax, but faster
+  set foldlevelstart=99               " start unfolded
+endif
+
+
